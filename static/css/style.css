@@ -1,0 +1,179 @@
+/**
+ * 医院管理信息系统 — 全局样式
+ *
+ * 覆盖 Bootstrap 默认样式 + 布局 + 组件样式。
+ */
+
+/* ===== 基础 ===== */
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", sans-serif;
+    background: #f5f6fa;
+    min-height: 100vh;
+}
+
+/* ===== Toast 定位 ===== */
+#toastContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 280px;
+}
+
+/* ===== 登录页 ===== */
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-page .card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.role-card {
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.role-card:hover {
+    border-color: #667eea;
+    background: #f0f0ff;
+}
+
+.role-card.selected {
+    border-color: #667eea;
+    background: #eef0ff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.role-card .role-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ===== Navbar ===== */
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ===== 侧边栏（管理员） ===== */
+.admin-layout {
+    display: flex;
+    min-height: calc(100vh - 56px);
+}
+
+.admin-sidebar {
+    width: 220px;
+    background: #fff;
+    border-right: 1px solid #e0e0e0;
+    padding: 16px 0;
+    flex-shrink: 0;
+}
+
+.admin-sidebar .nav-link {
+    color: #333;
+    padding: 10px 20px;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    color: #667eea;
+    background: #f0f0ff;
+    border-left-color: #667eea;
+}
+
+.admin-content {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* ===== 通用卡片 ===== */
+.page-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+/* ===== 表格微调 ===== */
+.table th {
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* ===== 统计卡片 ===== */
+.stat-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.stat-card .stat-label {
+    color: #888;
+    margin-top: 4px;
+}
+
+/* ===== 步骤条（入院登记） ===== */
+.step-indicator {
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.step-indicator .step {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 3px solid #e0e0e0;
+    color: #999;
+    transition: all 0.3s;
+}
+
+.step-indicator .step.active {
+    border-bottom-color: #667eea;
+    color: #667eea;
+    font-weight: 600;
+}
+
+.step-indicator .step.done {
+    border-bottom-color: #28a745;
+    color: #28a745;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        width: 60px;
+    }
+    .admin-sidebar .nav-link span {
+        display: none;
+    }
+    .admin-content {
+        padding: 12px;
+    }
+}
