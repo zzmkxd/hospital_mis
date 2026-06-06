@@ -101,6 +101,7 @@ CREATE TABLE outpatient_prescription (
     symptom_desc  TEXT          DEFAULT NULL             COMMENT '症状描述',
     pay_status    ENUM('待支付','已支付') NOT NULL DEFAULT '待支付' COMMENT '支付状态',
     PRIMARY KEY (presc_id),
+    UNIQUE  (reg_id),                                   -- 一次挂号最多产生一张处方
     CONSTRAINT fk_opresc_reg    FOREIGN KEY (reg_id)     REFERENCES registration(reg_id),
     CONSTRAINT fk_opresc_doctor FOREIGN KEY (doctor_id)  REFERENCES doctor(doctor_id)
 ) ENGINE=InnoDB COMMENT='门诊处方';
@@ -130,6 +131,7 @@ CREATE TABLE prescription_detail (
     qty           INT           NOT NULL                 COMMENT '数量',
     usage_inst    VARCHAR(200)  DEFAULT NULL             COMMENT '用法，如「每日三次，每次一片」',
     PRIMARY KEY (detail_id),
+    UNIQUE  (presc_id, presc_type, medicine_id),        -- 同一处方中同一种药品只记录一次
     CONSTRAINT fk_detail_medicine FOREIGN KEY (medicine_id) REFERENCES medicine(medicine_id)
 ) ENGINE=InnoDB COMMENT='处方明细';
 
@@ -201,6 +203,7 @@ CREATE TABLE inpatient_prescription (
     doctor_id     INT           NOT NULL                 COMMENT '主治医生ID',
     presc_time    DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '开方时间',
     PRIMARY KEY (presc_id),
+    UNIQUE  (record_id),                                -- 一次查房记录最多产生一张住院处方
     CONSTRAINT fk_ipresc_record FOREIGN KEY (record_id) REFERENCES inpatient_record(record_id),
     CONSTRAINT fk_ipresc_doctor FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id)
 ) ENGINE=InnoDB COMMENT='住院处方';
